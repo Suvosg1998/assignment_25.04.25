@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const mongooseAggregatePaginate = require('mongoose-aggregate-paginate');
+
 
 const productSchema = new mongoose.Schema({
     name:{
@@ -11,7 +13,7 @@ const productSchema = new mongoose.Schema({
     },
     photo:{
         type:String,
-        required:true,
+        default:''
     },
     category:{
         type:mongoose.Schema.Types.ObjectId,
@@ -27,5 +29,6 @@ const productSchema = new mongoose.Schema({
         default:false
     }
 },{timestamps:true,versionKey:false});
+productSchema.plugin(mongooseAggregatePaginate);
 
 module.exports = mongoose.model('Prod',productSchema);
